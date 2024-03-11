@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Title from "./components/Title";
 import Card from "./components/Card";
 import CardLayout from "./layouts/CardLayout";
+import Scoreboard from "./components/Scoreboard";
 
 function App() {
     const maxPokemons = 16;
@@ -9,6 +10,7 @@ function App() {
     const initClickCount = new Array(maxPokemons);
     initClickCount.fill(0);
     const [clickCount, setClickCount] = useState(initClickCount);
+    const [score, setScore] = useState(0);
 
     function getPokeData(id) {
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -39,6 +41,8 @@ function App() {
         const updatedClickCount = [...clickCount];
         updatedClickCount[id] = 1;
         setClickCount(updatedClickCount);
+        // update score
+        setScore((score) => score + 1);
         // shuffle
         const newArrangement = shuffle(pokemons);
         setPokemons(newArrangement);
@@ -65,6 +69,7 @@ function App() {
                     />
                 ))}
             </CardLayout>
+            <Scoreboard score={score} />
         </>
     );
 }
