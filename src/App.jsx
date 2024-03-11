@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Title from "./components/Title";
+import Card from "./components/Card";
 
 function App() {
+    const maxPokemons = 16;
     const [pokemons, setPokemons] = useState([]);
 
     function getPokeData(id) {
@@ -20,13 +22,27 @@ function App() {
     }
 
     useEffect(() => {
-        getPokeData(1);
+        for (let i = 0; i < maxPokemons; i++) {
+            getPokeData(i);
+        }
     }, []);
+
+    function handleClick(id) {
+        console.log("clicked ", id);
+    }
 
     return (
         <>
             <Title />
-            <div>{JSON.stringify(pokemons)}</div>
+            <div>
+                {pokemons.map((pokemon) => (
+                    <Card
+                        key={pokemon.id}
+                        pokeData={pokemon}
+                        handleClick={handleClick}
+                    />
+                ))}
+            </div>
         </>
     );
 }
