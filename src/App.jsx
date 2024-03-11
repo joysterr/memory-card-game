@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Title from "./components/Title";
 import Card from "./components/Card";
 import CardLayout from "./layouts/CardLayout";
-import Scoreboard from "./components/Scoreboard";
 import Instructions from "./components/Instructions";
+import Scoreboard from "./components/Scoreboard";
+import Title from "./components/Title";
 
 function App() {
     const maxPokemons = 16;
@@ -12,6 +12,7 @@ function App() {
     initClickCount.fill(0);
     const [clickCount, setClickCount] = useState(initClickCount);
     const [score, setScore] = useState(0);
+    const [highscore, setHighscore] = useState(0);
 
     function getPokeData(id) {
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -37,6 +38,7 @@ function App() {
     function handleClick(id) {
         if (clickCount[id] === 1) {
             alert("GAME OVER");
+            resetGame();
             return;
         }
         const updatedClickCount = [...clickCount];
@@ -45,6 +47,20 @@ function App() {
         // update score
         setScore((score) => score + 1);
         // shuffle
+        const newArrangement = shuffle(pokemons);
+        setPokemons(newArrangement);
+    }
+
+    function updateHighscore(currentScore) {
+        if (currentScore > highscore) {
+            setHighscore(currentScore);
+        }
+    }
+
+    function resetGame() {
+        updateHighscore(score);
+        setScore(0);
+        setClickCount(initClickCount);
         const newArrangement = shuffle(pokemons);
         setPokemons(newArrangement);
     }
@@ -71,7 +87,7 @@ function App() {
                     />
                 ))}
             </CardLayout>
-            <Scoreboard score={score} />
+            <Scoreboard score={score} highscore={highscore} />
         </>
     );
 }
