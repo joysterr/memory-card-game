@@ -3,6 +3,7 @@ import Title from "./components/Title";
 import Card from "./components/Card";
 import CardLayout from "./layouts/CardLayout";
 import Scoreboard from "./components/Scoreboard";
+import Instructions from "./components/Instructions";
 
 function App() {
     const maxPokemons = 16;
@@ -60,6 +61,7 @@ function App() {
     return (
         <>
             <Title />
+            <Instructions />
             <CardLayout>
                 {pokemons.map((pokemon) => (
                     <Card
