@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Title from "./components/Title";
 import Card from "./components/Card";
+import CardLayout from "./layouts/CardLayout";
 
 function App() {
     const maxPokemons = 16;
@@ -22,7 +23,7 @@ function App() {
     }
 
     useEffect(() => {
-        for (let i = 0; i < maxPokemons; i++) {
+        for (let i = 1; i <= maxPokemons; i++) {
             getPokeData(i);
         }
     }, []);
@@ -34,7 +35,7 @@ function App() {
     return (
         <>
             <Title />
-            <div>
+            <CardLayout>
                 {pokemons.map((pokemon) => (
                     <Card
                         key={pokemon.id}
@@ -42,7 +43,7 @@ function App() {
                         handleClick={handleClick}
                     />
                 ))}
-            </div>
+            </CardLayout>
         </>
     );
 }

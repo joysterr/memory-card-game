@@ -1,7 +1,7 @@
 export default function Card({ pokeData, handleClick }) {
     return (
         <div
-            className="p-4 border-white border-2 rounded-sm flex flex-col justify-center items-center cursor-pointer"
+            className="p-4 border-white border-2 rounded-md flex flex-col justify-center items-center cursor-pointer hover:border-red-700"
             onClick={() => handleClick(pokeData.id)}
         >
             <img
