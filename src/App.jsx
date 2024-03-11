@@ -6,6 +6,9 @@ import CardLayout from "./layouts/CardLayout";
 function App() {
     const maxPokemons = 16;
     const [pokemons, setPokemons] = useState([]);
+    const initClickCount = new Array(maxPokemons);
+    initClickCount.fill(0);
+    const [clickCount, setClickCount] = useState(initClickCount);
 
     function getPokeData(id) {
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -29,7 +32,13 @@ function App() {
     }, []);
 
     function handleClick(id) {
-        console.log("clicked ", id);
+        if (clickCount[id] === 1) {
+            alert("GAME OVER");
+            return;
+        }
+        const updatedClickCount = [...clickCount];
+        updatedClickCount[id] = 1;
+        setClickCount(updatedClickCount);
     }
 
     return (
