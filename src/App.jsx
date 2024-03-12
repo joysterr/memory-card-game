@@ -21,6 +21,10 @@ function App() {
         }
     }, []);
 
+    useEffect(() => {
+        isWinner(score);
+    }, [score]);
+
     function getPokeData(id) {
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
             .then((resp) => resp.json())
@@ -53,6 +57,13 @@ function App() {
         // shuffle
         const newArrangement = shuffle(pokemons);
         setPokemons(newArrangement);
+    }
+
+    function isWinner(score) {
+        if (score === 16) {
+            alert("YOU WIN! MAX SCORE ACHIEVED!");
+            resetGame();
+        }
     }
 
     function updateHighscore(currentScore) {
