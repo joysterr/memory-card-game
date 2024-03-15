@@ -1,3 +1,10 @@
+import PropTypes from 'prop-types'
+
+Card.propTypes = {
+    pokeData: PropTypes.object,
+    handleClick: PropTypes.func
+}
+
 export default function Card({ pokeData, handleClick }) {
     return (
         <div
