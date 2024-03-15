@@ -18,7 +18,8 @@ These are simple:
 
 ## 🧠 Learnt
 
--   Functional Components, side effects, API utilisation, state management, React Dev Tools (Chrome)
+-   Functional Components, Side Effects, API Utilisation, State Management, React Dev Tools (Chrome)
+-   Type checking with prop-types
 -   Linting and Formatting
 -   Tailwind CSS
 
